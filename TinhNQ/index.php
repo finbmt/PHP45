@@ -78,36 +78,22 @@
 	</body>
 </html>
 <?php
-	include 'oop_phanso.php';
+	include_once 'csdl.php';
 
-	$ps1 = new PhanSo();
-	// 1/2
-	$ps1->input(1, 2);
+	//$sql_insert = "INSERT INTO tbl_LoaiHang (TenLoaiHang) VALUES ('vi du')";
+	//$object1 = mysqli_query($link, $sql_insert);
 
-	$ps2 = new PhanSo();
-	// 1/2
-	$ps2->input(3, 5);
+	// them, xoa, sua
+	//$sql_insert = "INSERT INTO tbl_LoaiHang (TenLoaiHang) VALUES ('vi du')";
+	//execute($link, $sql_insert);
 
-	$ps3 = new PhanSo();
-	
-	$dau = '+';
+	// lay du lieu -> mang
+	//$sql_select = "SELECT * FROM `tbl_LoaiHang`";
+	//$data = select_array($link, $sql_select);
 
-	// xử lý
-	if ($dau == '+')
-	{
-		$ps3 = $ps1->cong($ps2);
-		$ps3->pheptinh($ps1, $ps2, $dau);
-	} 
-	elseif ($dau == '-')
-	{
-		$ps3 = $ps1->tru($ps2);
-	} 
-	elseif ($dau == '*')
-	{
-		$ps3 = $ps1->nhan($ps2);
-	} 
-	elseif ($dau == ':') 
-	{
-		$ps3 = $ps1->chia($ps2);
-	}
+	// lay du lieu -> so record
+	$sql_select = "SELECT count(1) as count FROM `tbl_LoaiHang`";
+	$tongso = select_count($link, $sql_select);
+
+	var_dump($tongso);
 ?>

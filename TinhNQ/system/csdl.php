@@ -17,6 +17,8 @@
 			echo "ket noi khong thanh cong";
 			exit;
 		}
+		// sua lỗi font select
+		mysqli_query($link, "SET NAMES utf8");
 
 		return $link;
 	}

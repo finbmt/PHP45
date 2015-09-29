@@ -75,6 +75,7 @@
 					<td colspan="2" class="mauxam">
 						<button type="submit" value="Lưu">Lưu</button>
 	  					<button type="reset" value="Làm Lại">Làm Lại</button>
+	  					<a href="nhacungcap_list.php">Quay về</a>
 					</td>
 				</tr>
 			</table>

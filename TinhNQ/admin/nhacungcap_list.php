@@ -1,7 +1,25 @@
 <?php
 include_once dirname(dirname(__file__)) . '/system/csdl.php';
+// xóa dữ liệu
+if (!empty($_GET['xoa']) && $_GET['xoa'] == 'true' 
+	&& !empty($_GET['MaNhaCungCap'])) {
+	
+	$MaNhaCungCap = $_GET['MaNhaCungCap'];
+	$sql_delete = "DELETE FROM `tbl_NhaCungCap` where MaNhaCungCap = '$MaNhaCungCap'";
+	$result = execute($sql_delete);
+	if ($result == 'true') {
+		echo "Đã Xóa thành công !!!!";
+	}
+}
 
-$sql = "SELECT * FROM `tbl_NhaCungCap`";
+// hiển thị dữ liệu
+if (!empty($_GET['keywords'])) {
+	$keywords = $_GET['keywords'];
+	// SELECT * FROM `tbl_NhaCungCap` where `TenNhaCungCap` like '%tính%' or `DiaChi` like '%tính%'
+	$where = "Where `TenNhaCungCap` like '%$keywords%' or `DiaChi` like '%$keywords%' or `MaNhaCungCap` = '$keywords'";
+}
+
+$sql = "SELECT * FROM `tbl_NhaCungCap` $where";
 $data = select_array($sql);
 ?>
 <html>
@@ -34,12 +52,26 @@ $data = select_array($sql);
 			{
 				width: 100%;
 			}
+
+			.keywords 
+			{
+				width: 200px;
+			}
 		</style>
 	</head>
 	<body>
 		<table width="600px" cellspacing="0">
 			<tr>
 				<td colspan="6" class="mauxam"><span>QL NHÀ CUNG CẤP</span></td>
+			</tr>
+			<tr>
+				<td colspan="6" class="mauxam">
+					<form action="nhacungcap_list.php" method="GET">
+						<span>Từ khóa</span>
+						<input type="text" class="keywords" name="keywords">
+						<button type="submit" value="Tìm">Tìm</button>
+					</form>
+				</td>
 			</tr>
 			<tr class="mauxanhduong">
 				<th>Mã</th>
@@ -59,7 +91,7 @@ $data = select_array($sql);
 					<td><?=$item['DienThoai'];?></td>
 					<td><?=$item['Email'];?></td>
 					<td>
-						<a href="#">Sửa</a> | <a href="#">Xóa</a>
+						<a href="#">Sửa</a> | <a onclick="return confirm('Bạn có chắc là muốn xóa record này k?');" href="?xoa=true&MaNhaCungCap=<?=$item['MaNhaCungCap'];?>">Xóa</a>
 					</td>
 				</tr>
 			<?php

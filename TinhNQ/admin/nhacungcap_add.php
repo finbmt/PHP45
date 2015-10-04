@@ -14,36 +14,12 @@
 		var_dump($result);
 	}
 ?>
-<html>
-	<head>
-		<meta charset="UTF-8"> 
-		<title>Bang nhieu hang</title>
-		<style type="text/css">
-			table, td {
-			   border: 1px solid #000;
-			}
-
-			td {
-				padding: 5px;
-			}
-
-			.mauxam 
-			{
-				background-color: #cecfce;
-			}
-			.col1 
-			{
-				width: 180px;
-			}
-			input 
-			{
-				width: 100%;
-			}
-		</style>
-	</head>
-	<body>
+<?php
+	$title_page = "Thêm Nhà Cung Cấp";
+	include_once 'layout_header.php';
+	?>
 		<form action="nhacungcap_add.php" method="POST">
-			<table width="600px" cellspacing="0">
+			<table class = "table table-bordered">
 				<tr>
 					<td colspan="2" class="mauxam"><span>THÊM MỚI NHÀ CUNG CẤP</span></td>
 				</tr>
@@ -73,9 +49,9 @@
 				</tr>
 				<tr>
 					<td colspan="2" class="mauxam">
-						<button type="submit" value="Lưu">Lưu</button>
-	  					<button type="reset" value="Làm Lại">Làm Lại</button>
-	  					<a href="nhacungcap_list.php">Quay về</a>
+						<button class="btn btn-default" type="submit" value="Lưu"> <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>Lưu</button>
+	  					<button class="btn btn-default" type="reset" value="Làm Lại">Làm Lại</button>
+	  					<a class="btn btn-default" href="nhacungcap_list.php">Quay về</a>
 					</td>
 				</tr>
 			</table>

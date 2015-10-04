@@ -22,45 +22,11 @@ if (!empty($_GET['keywords'])) {
 $sql = "SELECT * FROM `tbl_NhaCungCap` $where";
 $data = select_array($sql);
 ?>
-<html>
-	<head>
-		<meta charset="UTF-8"> 
-		<title>Bang nhieu hang</title>
-		<style type="text/css">
-			table, td, th {
-			   border: 1px solid #000;
-			}
-			
-			th {
-				padding: 5px;
-				background-color: #e5e5e5;
-			}
-
-			td {
-				padding: 5px;
-			}
-
-			.mauxam 
-			{
-				background-color: #cecfce;
-			}
-			.col1 
-			{
-				width: 180px;
-			}
-			input 
-			{
-				width: 100%;
-			}
-
-			.keywords 
-			{
-				width: 200px;
-			}
-		</style>
-	</head>
-	<body>
-		<table width="600px" cellspacing="0">
+<?php
+	$title_page = "Quản lí Nhà Cung Cấp";
+	include_once 'layout_header.php';
+	?>
+		<table class = "table table-bordered">
 			<tr>
 				<td colspan="6" class="mauxam"><span>QL NHÀ CUNG CẤP</span></td>
 			</tr>
@@ -69,7 +35,7 @@ $data = select_array($sql);
 					<form action="nhacungcap_list.php" method="GET">
 						<span>Từ khóa</span>
 						<input type="text" class="keywords" name="keywords">
-						<button type="submit" value="Tìm">Tìm</button>
+						<button type="submit" value="Tìm" class="btn btn-default">Tìm</button>
 					</form>
 				</td>
 			</tr>
@@ -91,13 +57,14 @@ $data = select_array($sql);
 					<td><?=$item['DienThoai'];?></td>
 					<td><?=$item['Email'];?></td>
 					<td>
-						<a href="#">Sửa</a> | <a onclick="return confirm('Bạn có chắc là muốn xóa record này k?');" href="?xoa=true&MaNhaCungCap=<?=$item['MaNhaCungCap'];?>">Xóa</a>
+						<a class="btn btn-default" href="nhacungcap_edit.php?MaNhaCungCap=<?=$item['MaNhaCungCap'];?>">Sửa</a> | <a class="btn btn-default" onclick="return confirm('Bạn có chắc là muốn xóa record này k?');
+						" href="?xoa=true&MaNhaCungCap=<?=$item['MaNhaCungCap'];?>">Xóa</a>
 					</td>
 				</tr>
 			<?php
 			}
 			?>
 		</table>
-		<a href="nhacungcap_add.php">Thêm mới</a>
+		<a class="btn btn-default" href="nhacungcap_add.php">Thêm mới</a>
 	</body>
 </html>

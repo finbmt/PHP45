@@ -77,5 +77,6 @@
 				</tr>
 			</table>
 		</form>
-	</body>
-</html>
+<?php
+	include_once 'layout_footer.php';
+?>

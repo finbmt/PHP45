@@ -63,5 +63,6 @@ $data = select_array($sql);
 			?>
 		</table>
 		<a class="btn btn-default" href="nguoidung_add.php">Thêm mới</a>
-	</body>
-</html>
+<?php
+	include_once 'layout_footer.php';
+?>

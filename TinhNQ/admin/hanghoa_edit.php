@@ -38,7 +38,7 @@
 	}
 ?>
 <?php
-	$title_page = "Thêm Hàng Hóa";
+	$title_page = "Sửa Hàng Hóa";
 	include_once 'layout_header.php';
 	?>
 		<form action="hanghoa_edit.php" method="POST">
@@ -104,5 +104,6 @@
 				</tr>
 			</table>
 		</form>
-	</body>
-</html>
+<?php
+	include_once 'layout_footer.php';
+?>

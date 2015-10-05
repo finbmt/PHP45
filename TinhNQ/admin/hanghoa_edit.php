@@ -4,16 +4,26 @@
 		$MaHang = $_GET['MaHang'];
 		$sql = "select * FROM `tbl_DMHang` where MaHang = '$MaHang'";
 		$data = select_array($sql);
-		$item = $data[0];
+		$item_hang = $data[0];
 	}
-	else{
-		header('location: hanghoa_list.php');
-	};
 
 	if (!empty($_POST)) {
+		//$HinhAnh = $_POST['HinhAnh'];
+		$HinhAnh = $_POST['HinhAnh'];
+
+		// kiểm tra xem người dùng có chọn hình ảnh k
+		if ($_FILES['HinhAnhUpload']['name']) {
+			if ($_FILES['HinhAnhUpload']['error'] != 0) {
+				die("file update bi lỗi");
+			}
+			
+			$HinhAnh = $_FILES['HinhAnhUpload']['name'];
+			move_uploaded_file($_FILES['HinhAnhUpload']['tmp_name'] , dirname(dirname(__file__)) . "/image/" . $HinhAnh);
+		}
+		
+
 		$_MaHang = $_POST['MaHang'];
 		$TenHang = $_POST['TenHang'];
-		$HinhAnh = $_POST['HinhAnh'];
 		$DVT = $_POST['DVT'];
 		$DonGia = $_POST['DonGia'];
 		$MaNhaCungCap = $_POST['MaNhaCungCap'];
@@ -36,12 +46,18 @@
 		
 		header('location: hanghoa_list.php');
 	}
+
+	$sql_loaihang = "SELECT * FROM `tbl_LoaiHang`";
+	$list_loaihang = select_array($sql_loaihang);
+
+	$sql_ncc = "SELECT * FROM `tbl_NhaCungCap`";
+	$list_ncc = select_array($sql_ncc);
 ?>
 <?php
 	$title_page = "Sửa Hàng Hóa";
 	include_once 'layout_header.php';
 	?>
-		<form action="hanghoa_edit.php" method="POST">
+		<form action="hanghoa_edit.php" method="POST" enctype="multipart/form-data">
 			<table class = "table table-bordered">
 				<tr>
 					<td colspan="2" class="mauxam"><span>Sửa Hàng Hóa</span></td>
@@ -50,49 +66,74 @@
 					<td>Mã Hàng Hóa</td>
 					<td>
 						<?= $MaHang;?>
-						<input type="hidden" name="MaHang" value="<?= $item['MaHang'];?>">
+						<input type="hidden" name="MaHang" value="<?= $item_hang['MaHang'];?>">
 					</td>
 				</tr>
 				<tr class="mauxanhduong">
 					<td>Tên Hàng</td>
 					<td>
-						<input type="text" name="TenHang" value="<?= $item['TenHang'];?>">
+						<input type="text" name="TenHang" value="<?= $item_hang['TenHang'];?>">
 					</td>
 				</tr>
 				<tr class="mauxanhduong">
 					<td>Hình Ảnh</td>
 					<td>
-						<input type="text" name="HinhAnh" value="<?= $item['HinhAnh'];?>">
+						<input type="hidden" name="HinhAnh" value="<?= $item_hang['HinhAnh'];?>">
+						<input type="file" onchange="readURL(this)" name="HinhAnhUpload" id="HinhAnhUpload">
+						<br>
+						<img id="imgTag" width="200" height="150" src="../image/<?= $item_hang['HinhAnh'];?>"/>
 					</td>
 				</tr>
 				<tr class="mauxanhduong">
 					<td>DVT</td>
 					<td>
-						<input type="text" name="DVT" value="<?= $item['DVT'];?>">
+						<input type="text" name="DVT" value="<?= $item_hang['DVT'];?>">
 					</td>
 				</tr>
 				<tr class="mauxanhduong">
 					<td>Đơn Giá</td>
 					<td>
-						<input type="text" name="DonGia" value="<?= $item['DonGia'];?>">
+						<input type="text" name="DonGia" value="<?= $item_hang['DonGia'];?>">
 					</td>
 				</tr>
 				<tr class="mauxanhduong">
-					<td>Mã Nhà Cung Cấp</td>
+					<td>Nhà Cung Cấp</td>
 					<td>
-						<input type="text" name="MaNhaCungCap" value="<?= $item['MaNhaCungCap'];?>">
+						<select name="MaNhaCungCap">
+							<option value="">--- Vui lòng chọn --</option>
+							<?php
+							foreach ($list_ncc as $item) {
+								$active = "";
+								if ($item['MaNhaCungCap'] == $item_hang['MaNhaCungCap']) {
+									$active = "selected";
+								}
+								echo "<option value='". $item['MaNhaCungCap']. "' $active>". $item['TenNhaCungCap']. "</option>";
+							}
+							?>
+						</select>
 					</td>
 				</tr>
 				<tr class="mauxanhduong">
-					<td>Mã Loại Hàng</td>
+					<td>Loại Hàng</td>
 					<td>
-						<input type="text" name="MaLoaiHang" value="<?= $item['MaLoaiHang'];?>">
+						<select name="MaLoaiHang">
+							<option value="">--- Vui lòng chọn --</option>
+							<?php
+							foreach ($list_loaihang as $item) {
+								$active = "";
+								if ($item['MaLoaiHang'] == $item_hang['MaLoaiHang']) {
+									$active = "selected";
+								}
+								echo "<option value='". $item['MaLoaiHang']. "' $active>". $item['TenLoaiHang']. "</option>";
+							}
+							?>
+						</select>
 					</td>
 				</tr>
 				<tr class="mauxanhduong">
 					<td>Mô Tả</td>
 					<td>
-						<input type="text" name="MoTa" value="<?= $item['MoTa'];?>">
+						<textarea name="MoTa" rows="10" cols="70"><?= $item_hang['MoTa'];?></textarea>
 					</td>
 				</tr>
 				<tr>

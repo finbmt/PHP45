@@ -8,7 +8,7 @@ if (!empty($_GET['xoa']) && $_GET['xoa'] == 'true'
 	$sql_delete = "DELETE FROM `tbl_DMHang` where MaHang = '$MaHang'";
 	$result = execute($sql_delete);
 	if ($result == 'true') {
-		echo "Đã Xóa thành công !!!!";
+		$message = "Đã Xóa thành công !!!!";
 	}
 }
 
@@ -24,7 +24,10 @@ $data = select_array($sql);
 <?php
 	$title_page = "Quản lí Hàng Hóa";
 	include_once 'layout_header.php';
+
+	echo $message;
 	?>
+
 		<table class = "table table-bordered">
 			<tr>
 				<td colspan="7" class="mauxam"><span>QL Hàng Hóa</span></td>
@@ -39,9 +42,9 @@ $data = select_array($sql);
 				</td>
 			</tr>
 			<tr class="mauxanhduong">
+				<th>Hình Ảnh</th>
 				<th>Mã</th>
 				<th>Tên Hàng</th>
-				<th>Hình Ảnh</th>
 				<th>Loại Hàng</th>
 				<th>ĐVT</th>
 				<th>Đơn Giá</th>
@@ -52,9 +55,9 @@ $data = select_array($sql);
 				foreach ($data as $item) {
 				?>
 					<tr class="mauxanhduong">
+						<td><img width="80px" height="100px" src="../image/<?=$item['HinhAnh'];?>"></td>
 						<td><?=$item['MaHang'];?></td>
 						<td><?=$item['TenHang'];?></td>
-						<td><?=$item['HinhAnh'];?></td>
 						<td><?=$item['MaLoaiHang'];?></td>
 						<td><?=$item['DVT'];?></td>
 						<td><?=$item['DonGia'];?></td>

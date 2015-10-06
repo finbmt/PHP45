@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if (!$_SESSION['user']) {
+		header('location: index.php');
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -56,11 +62,11 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TinhNQ <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['user']['HoTen']; ?><span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Thông Tin</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Đăng xuất</a></li>
+                <li><a href="logout.php">Đăng xuất</a></li>
               </ul>
             </li>
           </ul>

@@ -1,3 +1,29 @@
+<?php
+	session_start();
+	include_once dirname(dirname(__file__)) . '/system/csdl.php';
+
+	if (!empty($_POST)) {
+		// xu ly dang nhap
+		$TenTruyCap = $_POST['TenTruyCap'];
+		$MatKhau = $_POST['MatKhau'];
+
+		$sql_login = "SELECT * FROM `tbl_NguoiDung` 
+		where `TenTruyCap` = '$TenTruyCap' 
+		and `MatKhau` = '$MatKhau'";
+
+		$data_login = select_array($sql_login);
+
+		if ($data_login) {
+			// login dung
+			$_SESSION['user'] = $data_login[0];
+			header('location: hanghoa_list.php');
+		}
+		else
+		{
+			$message = "<p class='bg-danger'>Bạn nhập sai tên truy cập or mật khẩu</p>";
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,50 +33,26 @@
 	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	    <meta name="description" content="">
 	    <meta name="author" content="">
-	    <link rel="icon" href="../../favicon.ico">
-
 	    <title>Signin Template for Bootstrap</title>
 
 	    <!-- Bootstrap core CSS -->
-	    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
 	    <!-- Custom styles for this template -->
-	    <link href="signin.css" rel="stylesheet">
-
-	    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-	    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-	    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	    <!--[if lt IE 9]>
-	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	    <![endif]-->
+	    <link href="../css/signin.css" rel="stylesheet">
   </head>
 
   <body>
 
     <div class="container">
-
-      <form class="form-signin">
+      <form class="form-signin" action="index.php" method="POST">
         <h2 class="form-signin-heading">Please sign in</h2>
+        <?=$message; ?>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input name="TenTruyCap" type="text" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
+        <input name="MatKhau"  type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-
     </div> <!-- /container -->
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  
-
 </body></html>

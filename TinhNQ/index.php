@@ -94,14 +94,14 @@
 										<div class="productinfo text-center">
 											<img src="image/<?=$item['HinhAnh'];?>" alt="" />
 											<h2><?=$item['DonGia'];?></h2>
-											<p><?=$item['TenHang'];?></p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<p><a href="detail.php?MaHang=<?=$item['MaHang'];?>"><a href="detail.php?MaHang=<?=$item['MaHang'];?>"><?=$item['TenHang'];?></a></a></p>
+											<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2><?=$item['DonGia'];?></h2>
-												<p><?=$item['TenHang'];?></p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<p><a href="detail.php?MaHang=<?=$item['MaHang'];?>"><?=$item['TenHang'];?></a></p>
+												<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
 								</div>
@@ -131,10 +131,12 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="image/<?=$item['HinhAnh'];?>" alt="" />
+												<a href="detail.php?MaHang=<?=$item['MaHang'];?>">
+													<img src="image/<?=$item['HinhAnh'];?>" alt="" />
+												</a>
 												<h2><?=$item['DonGia'];?></h2>
-												<p><?=$item['TenHang'];?></p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<p><a href="detail.php?MaHang=<?=$item['MaHang'];?>"><?=$item['TenHang'];?></a></p>
+												<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 											
 										</div>
@@ -160,7 +162,7 @@
 													<img src="images/home/recommend1.jpg" alt="" />
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 												
 											</div>
@@ -173,7 +175,7 @@
 													<img src="images/home/recommend2.jpg" alt="" />
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 												
 											</div>
@@ -186,7 +188,7 @@
 													<img src="images/home/recommend3.jpg" alt="" />
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 												
 											</div>
@@ -201,7 +203,7 @@
 													<img src="images/home/recommend1.jpg" alt="" />
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 												
 											</div>
@@ -214,7 +216,7 @@
 													<img src="images/home/recommend2.jpg" alt="" />
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 												
 											</div>
@@ -227,7 +229,7 @@
 													<img src="images/home/recommend3.jpg" alt="" />
 													<h2>$56</h2>
 													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="cart.php?add=true&MaHang=<?=$item['MaHang'];?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 												
 											</div>

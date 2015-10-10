@@ -14,7 +14,7 @@
 		?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4 class="panel-title"><a href="product.php?MaLoaiHang=<?=$item['TenLoaiHang'];?>"><?=$item['TenLoaiHang'];?></a></h4>
+				<h4 class="panel-title"><a href="product.php?MaLoaiHang=<?=$item['MaLoaiHang'];?>"><?=$item['TenLoaiHang'];?></a></h4>
 			</div>
 		</div>
 		<?php
@@ -29,7 +29,7 @@
 				<?php
 				foreach ($list_ncc as $item) {
 				?>
-					<li><a href="product.php?MaNhaCungCap="><?=$item['TenNhaCungCap'];?></a></li>
+					<li><a href="product.php?MaNhaCungCap=<?=$item['MaNhaCungCap'];?>"><?=$item['TenNhaCungCap'];?></a></li>
 				<?php
 				}
 				?>

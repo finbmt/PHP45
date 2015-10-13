@@ -83,5 +83,17 @@
 		return $data[0]['count'];
 	}
 
+	function select_value($sql, $value)
+	{
+		// mo ket noi
+		$link = connect_server();
+		
+		$obj = mysqli_query($link, $sql);
+		$data = $obj->fetch_array();
 
+		// dong ket noi
+		close_server($link);
+
+		return $data[0][$value];
+	}
 ?>

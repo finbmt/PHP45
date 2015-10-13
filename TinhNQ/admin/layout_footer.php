@@ -14,6 +14,9 @@
 			   <li class="list-group-item">
 				<a href="nguoidung_list.php">Người Dùng</a>
 			  </li>
+			  <li class="list-group-item">
+				<a href="hoadonban_list.php">Hóa Đơn Bán</a>
+			  </li>
 			</ul>
 		</div>
 	</div>
